@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suite du JS</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts3.js" defer></script>
+</head>
+<body>
+       <!-- Le chemin critique du rendu -->
+    <h2>Le chemin critique du rendu et la performance d’un site</h2>
+    <hr>
+    <article>
+        Lorsqu’un utilisateur essaie d’accéder à une page d’un site Internet en tapant une URL
+        dans son navigateur, le navigateur se charge de contacter le serveur qui héberge la page
+        et lui demande de renvoyer le document demandé ainsi que les ressources nécessaires à son bon fonctionnement.<br>
+        Le passage du code brut au rendu final se fait en différentes étapes que le navigateur va exécuter à la suite et qu’on appelle également le « chemin critique du rendu ».<br><br>
+        Le chemin critique du rendu est constitué de 6 grandes étapes :
+        <ol type="1">
+            <li>La construction de l’arborescence du DOM (Document Object Model);</li>
+            <li>Construction de l’arborescence du CSSOM (CSS Object Model), équivalent du DOM pour le HTML;</li>
+            <li>L’exécution du code JavaScript ;</li>
+            <li>Construction de l’arbre de rendu;</li>
+            <li>La génération de la mise en page;</li>
+            <li>La conversion du contenu visible final de la page en pixels.</li>
+        </ol><br>
+        Le <strong>CSS</strong> peut également être bloquant pour des scripts. Cela est dû au fait que les fichiers JavaScript doivent attendre la construction du fichier CSSOM avant de pouvoir être exécutés. Le <strong>JavaScript</strong>, enfin, est considéré comme une ressource bloquante pour l’analyseur : l’analyse du document HTML lui-même est bloquée par le JavaScript. C’est la raison pour laquelle il a pendant longtemps été recommandé de placer le code JavaScript en fin de <strong>body</strong>, après le code HTML, pour ne pas bloquer l’analyse de celui-ci. Le JavaScript externe peut cependant être chargé de manière asynchrone en utilisant l’attribut <strong>async</strong>.
+    </article>
+
+    <!-- Les attributs Async et Defer -->
+    <h2>Résumé des attributs "Async" et "Defer"</h2>
+    <article>
+        Parmi ces ressources externes, on retrouve au premier plan les scripts JavaScript : chargement de librairies, scripts de collecte des données comme Google Analytics. Pour résoudre un problème de blocage de l’analyseur lors du chargement d’un script JavaScript externe, le <strong>HTML5</strong> nous fournit deux nouveaux attributs : <strong>async</strong> et <strong>defer</strong> à inclure dans les balises <code>&lt;script&gt;</code>.
+        <br>L’attribut <strong>async</strong> indique au navigateur que le fichier JavaScript peut être exécuté de manière asynchrone. Tandis que l’attribut <strong>defer</strong> indique que le fichier JavaScript ne doit être exécuté qu’une fois que le code HTML a fini d’être analysé.
+        <p>Après avoir connu la définition des ces termes, nous verrons dans un second temps les <strong>symboles</strong>.</p>
+    </article>
+
+    <!-- Les Symboles en JS -->
+    <h2>Les Symboles en JS</h2>
+    <h3>Créer un Symbole global</h3>
+    <article>
+        <p>Un symbole est un identifiant unique qui va pouvoir servir d’identifiant pour une propriété d’un objet par exemple.</p>
+        <p>L’utilisation de <strong>Symbol()</strong> ne permet de créer que des symboles locaux, non disponibles dans d’autres fichiers.</p>
+        <p>Pour qu'il soit <strong>global</strong>, nous utiliserons la méthode <strong>Symbol.for()</strong>.</p>
+        <p>Exemple dans le script : <a href="https://codepen.io/Bassirou-Sow/pen/YPyvxVd?editors=0010" class="monLien">Testez</a></p>
+    </article>
+
+    <!-- Les fonctions Génératrices et l'objet Generator -->
+    <h2>Les fonctions Génératrices et "L'objet Generator"</h2>
+    <article>
+        <p>Un générateur permet de retourner plusieurs valeurs à la différence des fonctions classiques qui ne retournent qu’une seule valeur.</p>
+        <p>Pour la définir, nous utiliserons la syntaxe <strong>function*</strong> et le mot clé <strong>yield</strong>.</p>
+        <p>Exemple :</p>
+        <pre><code>function* generateSequence() {
+    yield 1;
+}</code></pre>
+        <p>Le mot clé <strong>yield</strong> est semblable à <strong>return</strong> mais spécifique aux générateurs.</p>
+        <p>Exemple dans le script : <a href="https://codepen.io/Bassirou-Sow/pen/JoYZyPO?editors=0010" class="monLien">Voir le script et testez-le</a></p>
+    </article>
+
+    <!-- Les Cookies -->
+    <h2>Qu'est-ce qu'un cookie et quel est son intérêt</h2>
+    <article>
+        <p>Un <strong>cookie</strong> est un petit fichier qui contient généralement une seule donnée et qui est stocké dans le navigateur d’un utilisateur. Les cookies sont créés côté serveur et envoyés avec la page demandée.</p>
+        <p>Ils permettent de conserver des informations envoyées par les utilisateurs pour les réutiliser facilement. Ainsi, le serveur peut identifier l’utilisateur et le connecter automatiquement dès que ses informations sont enregistrées.</p>
+        <p>Pour créer un cookie : <code>document.cookie = 'user=Nereus';</code></p>
+        <p>Exemple dans le script : <a href="https://codepen.io/Bassirou-Sow/pen/empKErG?editors=0010" class="monLien">Voir le script et testez-le</a></p>
+        <p>Pour préciser le domaine : <code>document.cookie = 'user=Nereus; path=/; domain=nereus-sow.com';</code></p>
+        <p>Pour la sécurité : ajouter <code>secure</code> afin que le cookie ne soit envoyé qu’en HTTPS.</p>
+    </article>
+
+    <!-- Formulaire de thème -->
+    <form>
+        <div>
+            <label for="bgtheme">Choisissez un thème (hexa) :</label>
+            <input class="text" id="bgtheme" value="FAFAFA" pattern="[a-fA-F0-9]{6}">
+        </div>
+    </form>
+
+    <!-- HTML Canvas -->
+    <h2>L'élément HTML canvas</h2>
+    <article>
+        <p>L’élément HTML <strong>canvas</strong> est un conteneur dans lequel on peut dessiner toutes sortes de graphiques via JavaScript (API Canvas ou WebGL).</p>
+        <p>Canvas est centré sur le dessin 2D tandis que WebGL permet de créer du contenu 3D.</p>
+        <p><span style="text-decoration: underline;">Exemple</span> :</p>
+        <pre><code>&lt;canvas id='c1' style='background-color: rgb(255,255,255);'&gt;&lt;/canvas&gt;</code></pre>
+        <p>Par défaut, le <strong>canvas</strong> mesure 300px de large sur 150px de haut. On peut modifier sa taille avec les attributs <strong>width</strong> et <strong>height</strong>.</p>
+        <p><span style="text-decoration: underline;">Exemple</span> : <pre>canvas = document.getElementById('c1');</pre></p>
+        <p>Pour accéder à un contexte 2D, nous utiliserons la méthode <strong>getContext()</strong> qui renvoie un objet appartenant à l'interface
+        <strong>CanvasRenderingContext2D</strong>.</p>
+        <p><span style="text-decoration: underline;">Exemple</span> : <pre>let ctx = canvas.getContext('2d');</pre></p>
+        <p>Canvas ne supporte qu’un type de figure géométrique : le rectangle. Les autres types de figures vont êtes construites en traçant des lignes à partir de coordonnées de points qu’on va donner.</p>
+        <p>Pour dessiner un rectangle vide, on utilise <strong>strokeRect()</strong>, seul le contour du rectangle sera dessiné. Ce contour sera dessiné en utilisant
+        la valeur de la propriété strokeStyle qui appartient également à <strong>CanvasRenderingContext2D.</strong>
+        </p>
+        <p><a href="https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D" class="monLien">Pour la documentation de CanvasRenderingContext2D</a></p>
+        <p>Exemple dans le script : 
+        <a href="https://codepen.io/Bassirou-Sow/pen/jEbKLRm?editors=1010">Voir le script et testez-le</a></p>  
+        <p>Pour remplir un rectangle dans notre page, on utilisde plutôt <strong>fillRect</strong> de CanvasRenderingContext2D</strong>.</p>
+        <p>Exemple dans le script : 
+        <a href="https://codepen.io/Bassirou-Sow/pen/qEOKPBv?editors=1010" class="modifier">Voir le script et testez-le</a></p>
+        <p>Pour finir, on a la possiblité de dessiner plusieurs : il faudra bien penser à modifier la valeur des propriétés <strong>strokeStyle</strong> et <strong>fillStyle</strong> afin d’obtenir les styles souhaités. </p>
+        <p>Exemple dans le script : 
+        <a href="https://codepen.io/Bassirou-Sow/pen/jEbKGvK?editors=1010" class="monLien">Voir le script et testez-le</a></p>    
+    </article>
+        <article>
+        <p>Dans L'API Canvas, nous avons divers propriétés et méthodes qui nous permet d'insérer du texte ou des images dans un canevas.
+            Rassurez-vous, le mot <strong>"canevas"</strong> désigne simplement l'élément <strong><code>canvas</code></strong></p>
+        <p>Pour dessiner du texte dans un canevas, nous allons utiliser les méthodes strokeText() (pour un texte creux) ou fillText() (pour un texte plein) de l’interface CanvasRenderingContext2D.</p>
+        <p>Après avoir utiliser ces méthodes, nous utiliserons les propriétés :</p>
+            <ul>
+                <li><strong>font</strong> (qui gère la police, la taille et l'épaisseur du texte).</li>
+                <li><strong>texAlign</strong> (pour l'alignement du texte avec les valeurs{start, end, left, right, et center}).</li>
+                <li><strong>textBaseline</strong> (qui gère l'alignement de texte par rapport au point de départ avec des valeurs).</li>
+                <li><strong>direction</strong> comme son nom l'indique qui permet de définir tout simplement la direction du texte.</li>
+            </ul>
+            <p>Pour plus d'exemples et d'explications approfondies, cliquez sur le lien suivant : <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript">MDN JavaScript</a></p>
+        <p><span style="text-decoration: underline;">Exemple dans la page HTML ou directement dans le fichier CSS</span> : 
+        <pre><code>
+        &lt;style&gt;
+         #c3 {
+           background-color: // Choisissez la couleur que vous voulez
+             }
+        &lt;/style&gt;
+        </code></pre>
+    </p>
+    
+        <p>Pour mettre en pratique cette propriéte  <strong><code>canvas</code></strong>, préciser comme ceci le code ci-après dans la page HTML avant la fermeture de 
+        la balise <strong>body</strong> : <code>&lt;canvas id='c3'&gt;&lt;/canvas&gt;</code>. Aprés avoir préciser, essayez le 
+        <p><strong>script</strong> ci-dessous et testez le résultat.</p>
+
+        <p>Exemple dans le script : <a href="https://codepen.io/Bassirou-Sow/pen/jEbKwLR" class="monLien">Testez</a><br>
+        <canvas id='c3'></canvas>
+        </article>
+  <script src="scripts3.js"></script>  
+</body>
+</html>

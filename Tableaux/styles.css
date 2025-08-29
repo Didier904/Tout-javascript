@@ -1,0 +1,32 @@
+ body {
+  background-color: white;
+}
+
+body h1, h2 {
+  color: rgba(11, 49, 199, 0.649);
+}
+
+body strong {
+  color: red;
+}
+ pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: monospace;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+            #c6{
+                background-color: #d70707;
+            }
+      

@@ -1,0 +1,12 @@
+body{
+    background-color: rgb(205, 222, 95);
+    h1,h2{
+        color: rgba(11, 49, 199, 0.649);
+    }
+    strong{
+        color: red;
+    }
+    li{
+        color: rgb(123, 6, 142);
+    }
+}
