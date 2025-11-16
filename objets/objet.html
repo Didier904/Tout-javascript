@@ -3,9 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Objets et Exemples JS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dbce56;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            text-align: center;
+            color: rgb(46, 138, 180);
+        }
+        a {
+            color: #6b4226;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            display: none; /* caché par défaut */
+        }
+        button {
+            background-color: #a01b1b;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #8b5e3c;
+        }
+    </style>
+    <script>
+        function toggleCode(id) {
+            const code = document.getElementById(id);
+            code.style.display = code.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
 </head>
 <body>
-  <script src="scripts1.js"></script>
+
+<h1>Cours JavaScript : Objets, Strings et Numbers</h1>
+
+<h2>Définition</h2>
+<p>
+Un <strong>objet</strong> en JavaScript est une <em>collection de propriétés</em>. 
+Chaque propriété est une association <strong>clé-valeur</strong>. 
+La clé est toujours une chaîne de caractères et la valeur peut être un nombre, une chaîne, un booléen, une fonction (méthode) ou un autre objet.
+</p>
+
+<h2 style="text-decoration: underline;">Exemple simple</h2>
+<button onclick="toggleCode('exempleObjet')">Afficher l'exemple</button>
+<pre id="exempleObjet">
+let personne = {
+    nom: "Alice",
+    age: 25,
+    saluer: function() {
+        console.log("Bonjour, je m'appelle " + this.nom);
+    }
+};
+</pre>
+
+<h2 style="text-decoration: underline;">Exemples sur les Strings</h2>
+<button onclick="toggleCode('exempleStrings')">Afficher les exemples Strings</button>
+<pre id="exempleStrings">
+// Exemple de remplacement
+let texte = "J'apprends le JS";
+texte.replace("JS", "PHP"); 
+
+// Majuscules / minuscules
+texte.toUpperCase(); 
+texte.toLowerCase(); 
+
+// Vérifier si une chaîne contient un mot
+texte.includes("JS"); 
+
+// Extraire une partie de la chaîne
+texte.substring(2, 8); 
+
+// Séparer une chaîne en tableau
+texte.split(" "); 
+</pre>
+
+<h2 style="text-decoration: underline;">Exemples sur les Numbers</h2>
+<button onclick="toggleCode('exempleNumbers')">Afficher les exemples Numbers</button>
+<pre id="exempleNumbers">
+let x = 10.5632;
+
+// Arrondir un nombre décimal
+x.toFixed(2); 
+
+// Préciser le nombre de chiffres significatifs
+let d = 25.123;
+d.toPrecision(3); 
+
+// Notation exponentielle
+d.toExponential(3); 
+
+// Conversion en entier ou flottant
+parseInt("123.45"); 
+parseFloat("123.45"); 
+
+// Vérifier si un nombre est entier
+Number.isInteger(d); 
+Number.isInteger(100); 
+</pre>
+
+<h2 style="text-decoration: underline;">Autres exemples Math</h2>
+<button onclick="toggleCode('exempleMath')">Afficher les exemples Math</button>
+<pre id="exempleMath">
+// Arrondir à l'entier le plus proche
+Math.round(7.8); 
+
+// Nombre aléatoire entre 0 et 1
+Math.random(); 
+
+// Nombre aléatoire entre 1 et 100
+Math.floor(Math.random() * 100) + 1; 
+</pre>
+
+<h2 >Lien utile</h2>
+<ul>
+    <li><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank">Documentation MDN - Object</a></li>
+</ul>
+
 </body>
 </html>

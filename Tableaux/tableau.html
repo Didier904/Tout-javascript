@@ -1,44 +1,213 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Objets natifs/tableaux</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Objets natifs / Tableaux</title>
+ <style>
+body { 
+    font-family: Arial, sans-serif; 
+    line-height: 1.6; 
+    padding: 20px; 
+    background-color: rgb(205, 222, 95);
+}
+
+h1, h2 { 
+    color: #2a5b8d; 
+}
+
+strong { 
+    color: red; 
+}
+
+li { 
+    color: rgb(123, 6, 142); 
+}
+
+/* Liens classiques mais rouges au survol */
+a.example-link {
+    display: block;           /* pour les mettre en liste verticale */
+    margin: 5px 0;             
+    color: #d11313;           /* couleur par défaut */
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+a.example-link:hover {
+    color: red;               /* devient rouge au survol */
+}
+
+ /* Blocs de code */
+    pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        white-space: pre-wrap;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+</style>
+
 </head>
 <body>
-<h1>Tableaux</h1>
-<p>Notre tableau</p>
-<p id="p1"></p>
-<p id="p2"></p>
-<p id="p3"></p>
-<h2>Définitions des termes "asynchrone" et "synchrone"</h2>
-<article>
-  En informatique, on dit que deux opérations sont <strong>synchrones</strong>, lorsque la seconde attend que la première ait fini
-  son travail pour s'éxécuter.<br>
-  Au cas contraire, lorsqu'ils sont qualifiés <strong>d'asynchrones</strong> en informatique c'est à dire qu'elles sont indépendantes(qui veut dire 
-  que la seconde n'attent pas le première pour demarrer.)<br>
-  Par défaut, le JS est un langage de programmation synchrone, qui ne s'éxécute qu'une seul fois :<br>
-  Le JavaScript ne peut exécuter qu’une instruction à la fois
- (il s’exécute sur un thread, c’est-à-dire un « fil » ou une « tache » ou un « processus » unique).<br>
- Après avoir défini ces termes, on a pris conscience que l'informatique ne parle pas le même vocabulaire que les autrs matières,
- à présent, on évoquera la partie <strong>"Promesse"</strong>...
-</article>
-<h2>Comprenons à quoi sert les Promesses en JavaScript</h2>
-<article>
-  Elles sont de nos jours très utilisées par les API modernes.
-  Une <strong>Promesse</strong> est donc un objet représentant l'état d'une opération asynchrone:<br>
-  Opération en cours (non terminée) ;<br>
-  Opération terminée avec succès (promesse résolue) ;<br>
-  Opération terminée ou plus exactement stoppée après un échec (promesse rejetée).<br>
-  <br>
-  Pour créer une promesse, on va donc utiliser la syntaxe <strong>new Promise()</strong>qui
-  fait appel au constructeur <strong>Promise</strong>.
-  Si la promesse est tenue, la fonction <strong>resolve()</strong> sera appelée tandis que
-  si la promesse est rompue la fonction <strong>reject()</strong> va être appelée.<br>
-  Voyons voir dans un exemple précis sur notre <strong>script.js</strong> à la ligne"183":
-  
-</article>
-  <script src="scripts2.js"></script>
+
+<h1 style="text-decoration: underline;">Tableaux et JavaScript</h1>
+
+<h2 style="text-decoration: underline;">Exemples</h2>
+<div id="example-links">
+    <a class="example-link" data-example="1">Exemple 1 — Manipulation de tableaux</a>
+    <a class="example-link" data-example="2">Exemple 2 — Accès aux éléments</a>
+    <a class="example-link" data-example="3">Exemple 3 — splice(), join() et transformations</a>
+    <a class="example-link" data-example="4">Exemple 4 — Dates</a>
+    <a class="example-link" data-example="5">Exemple 5 — Géolocalisation</a>
+    <a class="example-link" data-example="6">Exemple 6 — Paramètre rest et fonctions</a>
+    <a class="example-link" data-example="7">Exemple 7 — Profil et hobbies</a>
+    <a class="example-link" data-example="8">Exemple 8 — Math.max() & SPREAD</a>
+    <a class="example-link" data-example="9">Exemple 9 — Portée des variables</a>
+    <a class="example-link" data-example="10">Exemple 10 — Closures</a>
+    <a class="example-link" data-example="11">Exemple 11 — Promesses et chargement de scripts</a>
+</div>
+
+<h2 style="text-decoration: underline;">Contenu de l'exemple</h2>
+<pre id="example-content">Cliquez sur un exemple pour voir le code ici...</pre>
+
+<script>
+const examples = {
+    1: `let prenoms = ["Eva", "Bass", "Mondot", "David", "Julien"], p = "";
+let taille = prenoms.push("Florian", "Zara");
+
+for (let i = 0; i < prenoms.length; i++) {
+    p += "Prénom n°" + (i + 1) + " : " + prenoms[i] + "\\n";
+}
+
+alert("Le tableau contient " + taille + " éléments : \\n" + p);`,
+
+    2: `let ages = [25, 20, 29, 30];
+let produits = ["Livre", 20, "Ordinateur", 5, ["Magnets", 100]];
+
+document.getElementById("p1").innerHTML = prenoms[0] + " possède 1 " + produits[2];
+document.getElementById("p2").innerHTML = prenoms[1] + " a " + ages[1] + " ans";
+document.getElementById("p3").innerHTML = produits[4][1] + " " + produits[4][0];`,
+
+    3: `let hommes = ["Pierre", "Mathilde", "Florian", "Camille"];
+let tranches = [25, 20, 29, 30];
+
+hommes.splice(2, 0, "Thomas", "Manon");
+let del = tranches.splice(1, 2, 35);
+
+document.getElementById("p1").innerHTML = hommes.join(" - ");
+document.getElementById("p2").innerHTML = tranches.join(" / ");
+document.getElementById("p3").innerHTML = '"' + del + '" supprimé de tranches';`,
+
+    4: `let date = Date();
+let date2 = Date.now();
+alert(date);
+
+let date1 = new Date();
+let dateLocale = date1.toLocaleString("fr-FR", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric"
+});
+
+document.getElementById("p1").innerHTML = "Date : " + dateLocale;`,
+
+    5: `function coordonnees(pos) {
+    let latitude = pos.coords.latitude;
+    let longitude = pos.coords.longitude;
+
+    document.getElementById("p1").innerHTML = "Latitude : " + latitude.toFixed(2);
+    document.getElementById("p2").innerHTML = "Longitude : " + longitude.toFixed(2);
+}
+
+navigator.geolocation.getCurrentPosition(coordonnees);`,
+
+    6: `function somme(...nombres) {
+    let total = 0;
+    for (let n of nombres) { total += n; }
+    return total;
+}
+
+alert(somme(1, 2));
+alert(somme(1, 2, 3));`,
+
+    7: `function profil(nom, prenom, ...hobbies) {
+    let h = hobbies.join(", ");
+    alert("Nom : " + nom + "\\nPrénom : " + prenom + "\\nHobbies : " + h);
+}
+
+profil("Sow", "Anna");
+profil("Sow", "Anna", "Roblox");`,
+
+    8: `let tb1 = [3, 5, 1, 32];
+let tb2 = [64, -5, 17];
+
+alert(Math.max(...tb1));
+alert(Math.max(...tb1, ...tb2));`,
+
+    9: `let x = 5;
+
+function portee1() {
+    let y = 10;
+    alert(x + y);
+}
+
+function portee2() {
+    let x = 100;
+    alert(x);
+}
+
+portee1();
+x = 20;
+portee1();
+portee2();`,
+
+    10: `function compteur() {
+    let cont = 0;
+    return function () {
+        return cont++;
+    };
+}
+
+let plusUn = compteur();
+
+alert(plusUn());
+alert(plusUn());
+alert(plusUn());`,
+
+    11: `function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        let script = document.createElement("script");
+        script.src = src;
+        document.head.append(script);
+
+        script.onload = () => resolve("Fichier " + src + " bien chargé");
+        script.onerror = () => reject("Échec de chargement de " + src);
+    });
+}
+
+loadScript("boucle.js").then(
+    result => alert(result),
+    error => alert(error)
+);
+
+loadScript("script2.js").then(
+    result => alert(result),
+    error => alert(error)
+);`
+};
+
+document.querySelectorAll('.example-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const id = link.getAttribute('data-example');
+        document.getElementById('example-content').textContent = examples[id] || "Exemple non disponible";
+    });
+});
+</script>
+
 </body>
 </html>
